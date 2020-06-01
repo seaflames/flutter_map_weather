@@ -21,6 +21,7 @@ pipeline {
         stage('Test') {
             steps {
                 dir('demo_app'){
+                    sh "flutter packages get"
                     sh "flutter test --coverage"
                 }
             }
@@ -41,6 +42,7 @@ pipeline {
         stage('Build APK') {
             steps {
                 dir('demo_app'){
+                    sh "flutter packages get"
                     sh "flutter build apk"
                 }
             }
