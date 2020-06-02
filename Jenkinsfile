@@ -20,8 +20,9 @@ pipeline {
         }
         stage('Test') {
             steps {
+                sh "flutter pub get"
                 dir('demo_app'){
-                    sh "flutter packages get"
+                    sh "flutter pub get"
                     sh "flutter test --coverage"
                 }
             }
