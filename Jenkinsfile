@@ -37,9 +37,13 @@ pipeline {
         }
         stage('Run Analyzer') {
             steps {
-                sh "flutter analyze --verbose"
+             println "INSIDE ROOT."
+                sh "flutter analyze"
+                println "INSIDE ROOT DONE."
                 dir('demo_app'){
-                    sh "flutter analyze --verbose"
+                    println "INSIDE DEMO_APP."
+                    sh "flutter analyze "
+                    println "INSIDE DEMO_APP DONE."
                 }
             }
         }
