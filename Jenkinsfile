@@ -40,7 +40,7 @@ pipeline {
                 dir('demo_app'){
                 script{
                     analyzeResult = sh(returnStdout: true, script: 'flutter analyze').trim()
-                    if(analyzeResult.contains('error •'){
+                    if(analyzeResult.contains('error •')){
                         error("flutter analyze found errors.")
                     }
                     else{
