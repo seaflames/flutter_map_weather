@@ -37,7 +37,10 @@ pipeline {
         }
         stage('Run Analyzer') {
             steps {
-                sh "dartanalyzer --options analysis_options.yaml ."
+                sh "flutter analyze --options analysis_options.yaml ."
+                dir('demo_app'){
+                    sh "flutter analyze --options analysis_options.yaml ."
+                }
             }
         }
         stage('Build APK') {
