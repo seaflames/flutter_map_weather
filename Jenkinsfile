@@ -37,13 +37,17 @@ pipeline {
         }
         stage('Run Analyzer') {
             steps {
-             println "INSIDE ROOT."
-                sh "flutter analyze"
-                println "INSIDE ROOT DONE."
                 dir('demo_app'){
-                    println "INSIDE DEMO_APP."
-                    sh "flutter analyze "
-                    println "INSIDE DEMO_APP DONE."
+                script{
+                    analyzeResult = sh(returnStdout: true, script: 'flutter analyze').trim()
+                    if(analyzeResult.contains('error •'){
+                        error("flutter analyze found errors.")
+                    }
+                    else{
+                        println "Successful Analysis"
+                    }
+                }
+
                 }
             }
         }
